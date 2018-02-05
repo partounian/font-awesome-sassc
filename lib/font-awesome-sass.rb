@@ -5,6 +5,7 @@ module FontAwesome
         register_compass_extension if compass?
 
         if rails?
+          register_sass_engine
           register_rails_engine
         elsif sprockets?
           register_sprockets
@@ -62,8 +63,13 @@ module FontAwesome
         )
       end
 
-      def register_rails_engine
+      def register_sass_engine
+        require 'sassc-rails'
+      rescue LoadError
         require 'sass-rails'
+      end
+
+      def register_rails_engine
         require 'font_awesome/sass/rails/engine'
         require 'font_awesome/sass/rails/railtie'
       end

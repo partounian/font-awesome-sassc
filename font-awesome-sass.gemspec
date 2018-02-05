@@ -7,11 +7,11 @@ require 'font_awesome/sass/version'
 Gem::Specification.new do |spec|
   spec.name          = 'font-awesome-sass'
   spec.version       = FontAwesome::Sass::VERSION
-  spec.authors       = ['Travis Chase']
-  spec.email         = ['travis@travischase.me']
-  spec.description   = 'Font-Awesome SASS gem for use in Ruby projects'
-  spec.summary       = 'Font-Awesome SASS'
-  spec.homepage      = 'https://github.com/FortAwesome/font-awesome-sass'
+  spec.authors       = ['Travis Chase', 'Alex Martin']
+  spec.email         = ['travis@travischase.me', 'alex@atmartin.io']
+  spec.description   = 'Font-Awesome gem for use in Ruby projects with either SASS or SASSC'
+  spec.summary       = 'Font-Awesome SASS[C]'
+  spec.homepage      = 'https://github.com/ATMartin/font-awesome-sass'
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -23,5 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '>= 1.3'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'sass-rails'
+  spec.add_development_dependency 'sassc-rails'
   spec.add_development_dependency 'compass'
 end
