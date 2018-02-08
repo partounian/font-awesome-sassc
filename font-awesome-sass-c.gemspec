@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = FontAwesome::Sass::VERSION
   spec.authors       = ['Travis Chase', 'Alex Martin']
   spec.email         = ['travis@travischase.me', 'alex@atmartin.io']
-  spec.description   = 'Font-Awesome gem for use in Ruby projects with either SASS or SASSC'
+  spec.description   = "Font-Awesome gem for use in Ruby projects with either SASS or SASSC\n\nThis gem is deprecated in favor of 'font-awesome-sassc' - Please switch for continued support!"
   spec.summary       = 'Font-Awesome SASS[C]'
   spec.homepage      = 'https://github.com/ATMartin/font-awesome-sass-c'
   spec.license       = 'MIT'
