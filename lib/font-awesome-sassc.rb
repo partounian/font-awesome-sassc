@@ -2,16 +2,15 @@ module FontAwesome
   module Sass
     class << self
       def load!
-        register_compass_extension if compass?
-
         if rails?
-          register_sass_engine
           register_rails_engine
         elsif sprockets?
           register_sprockets
+        elsif compass?
+          register_compass_extension
+        elsif deprecated_sass?
+          ::Sass.load_paths << stylesheets_path
         end
-
-        configure_sass
       end
 
       # Paths
@@ -43,32 +42,25 @@ module FontAwesome
         defined?(::Rails)
       end
 
-      private
-
-      def configure_sass
-        require 'sass'
-
-        ::Sass.load_paths << stylesheets_path
+      def deprecated_sass?
+        # The deprecated `sass` gem:
+        defined?(::Sass) && ::Sass.respond_to?(:load_paths)
       end
 
+      private
+      
       def register_compass_extension
         require 'font_awesome/sass/version'
 
         ::Compass::Frameworks.register(
           'font-awesome',
-          :version               => FontAwesome::Sass::VERSION,
-          :path                  => gem_path,
-          :stylesheets_directory => stylesheets_path,
-          :templates_directory   => File.join(gem_path, 'templates')
+          version: FontAwesome::Sass::VERSION,
+          path: gem_path,
+          stylesheets_directory: stylesheets_path,
+          templates_directory: File.join(gem_path, 'templates')
         )
       end
-
-      def register_sass_engine
-        require 'sassc-rails'
-      rescue LoadError
-        require 'sass-rails'
-      end
-
+      
       def register_rails_engine
         require 'font_awesome/sass/rails/engine'
         require 'font_awesome/sass/rails/railtie'
